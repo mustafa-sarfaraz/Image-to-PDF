@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Smart Files to PDF Tool</title>
+  <title>Smart File to PDF Converter</title>
 
   <!-- 📦 Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -82,6 +82,13 @@
     .sortable-ghost {
       opacity: 0.5;
     }
+
+    /* ✅ HIDE certain elements in PDF output only */
+    @media print {
+      .exclude-pdf {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -127,13 +134,13 @@
       wrapper.className = 'block';
 
       const header = document.createElement('div');
-      header.className = 'block-header';
+      header.className = 'block-header exclude-pdf'; // ❌ Hide in PDF
 
       const title = document.createElement('strong');
       title.textContent = file.name;
 
       const del = document.createElement('button');
-      del.className = 'delete-btn';
+      del.className = 'delete-btn exclude-pdf'; // ❌ Hide in PDF
       del.textContent = '🗑️ Delete';
       del.onclick = () => wrapper.remove();
 
